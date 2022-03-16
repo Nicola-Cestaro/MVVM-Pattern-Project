@@ -35,8 +35,13 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
             title: Text("MVVM Example")
         ),
-        body: SingleChildScrollView(
-          child: _ui(catFactsViewModel),
+        body: Container(
+          width: screenSize.width,
+          height: screenSize.height,
+          child: SingleChildScrollView(
+            padding: EdgeInsets.only(top: 20),
+            child: _ui(catFactsViewModel),
+          ),
         )
 
     );
@@ -71,10 +76,10 @@ class _HomeScreenState extends State<HomeScreen> {
           alignment: Alignment.bottomCenter,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(20)),
               child: SizedBox(
                 width: screenSize.width * 0.45,
-                height: screenSize.width * 0.23,
+                height: screenSize.width * 0.10,
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                   child: Container(
@@ -85,6 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Container(
               width: screenSize.width * 0.7,
+              padding: EdgeInsets.only(bottom: 5, left: 5),
               child: Text(
                 catFact.fact.toString(),
                 maxLines: 1,
@@ -93,6 +99,28 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontSize: 20,
                     color: Colors.black87,
                     fontWeight: FontWeight.w900
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: screenSize.width * 0.10 - 10,
+              right: 3,
+              child: Container(
+                padding: EdgeInsets.all(5),
+                height: 20,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                  borderRadius: BorderRadius.circular(30)
+                ),
+                child: Text(
+                  catFact.length.toString() + "+",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.roboto(
+                      fontSize: 10,
+                      color: Colors.black87,
+                      fontWeight: FontWeight.w900
+                  ),
                 ),
               ),
             ),
